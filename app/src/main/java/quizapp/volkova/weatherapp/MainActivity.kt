@@ -2,6 +2,7 @@ package quizapp.volkova.weatherapp
 
 import android.os.AsyncTask
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.ProgressBar
 import android.widget.RelativeLayout
@@ -13,7 +14,7 @@ import java.text.SimpleDateFormat
 import java.util.*
 
 class MainActivity : AppCompatActivity() {
-    val CITY: String = "Kyiv,ua"
+    val CITY: String = "Kyiv"
     val API: String = "407711ecf9fdb73061869dc807029279"
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -40,6 +41,7 @@ class MainActivity : AppCompatActivity() {
                         Charsets.UTF_8
                     )
             } catch (e: Exception) {
+                Log.d("hello", e.toString())
                 response = null
             }
             return response
