@@ -75,7 +75,7 @@ class MainActivity : AppCompatActivity() {
 
                 val address = jsonObj.getString("name") + ", " + sys.getString("country")
 
-                /* Populating extracted data into our views */
+
                 findViewById<TextView>(R.id.address).text = address
                 findViewById<TextView>(R.id.updated_at).text = updatedAtText
                 findViewById<TextView>(R.id.status).text = weatherDescription.capitalize()
