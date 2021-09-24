@@ -90,7 +90,10 @@ class MainActivity : AppCompatActivity() {
             /* Views populated, Hiding the loader, Showing the main design */
             findViewById<ProgressBar>(R.id.loader).visibility = View.GONE
             findViewById<RelativeLayout>(R.id.mainContainer).visibility = View.VISIBLE
-
-
+        }
+        catch (e: Exception) {
+            findViewById<ProgressBar>(R.id.loader).visibility = View.GONE
+            findViewById<TextView>(R.id.errorText).visibility = View.VISIBLE
+        }
     }
 }
