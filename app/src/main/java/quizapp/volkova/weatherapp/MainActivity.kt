@@ -24,20 +24,14 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-
         val temperature = findViewById<TextView>(R.id.temp)
         temperature.setOnClickListener {
             val fade: Animation =
                 AnimationUtils.loadAnimation(applicationContext, R.anim.anim)
-
         }
 
         findWeather().execute()
     }
-
-
-
-
 
     inner class findWeather() : AsyncTask<String, Void, String>() {
         override fun onPreExecute() {
@@ -92,7 +86,6 @@ class MainActivity : AppCompatActivity() {
 
                 val address = jsonObj.getString("name") + ", " + sys.getString("country")
 
-
                 findViewById<TextView>(R.id.address).text = address
                 findViewById<TextView>(R.id.updated_at).text = updatedAtText
                 findViewById<TextView>(R.id.status).text = weatherDescription.capitalize()
@@ -107,7 +100,6 @@ class MainActivity : AppCompatActivity() {
                 findViewById<TextView>(R.id.pressure).text = pressure
                 findViewById<TextView>(R.id.humidity).text = humidity
 
-                /* Views populated, Hiding the loader, Showing the main design */
                 findViewById<ProgressBar>(R.id.loader).visibility = View.GONE
                 findViewById<RelativeLayout>(R.id.mainContainer).visibility = View.VISIBLE
             } catch (e: Exception) {
