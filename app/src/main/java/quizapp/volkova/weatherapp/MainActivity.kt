@@ -1,9 +1,12 @@
 package quizapp.volkova.weatherapp
 
+import android.animation.ObjectAnimator
 import android.os.AsyncTask
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import android.view.animation.Animation
+import android.view.animation.AnimationUtils
 import android.widget.ProgressBar
 import android.widget.RelativeLayout
 import android.widget.TextView
@@ -21,8 +24,20 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+
+        val temperature = findViewById<TextView>(R.id.temp).text
+//        val fadeInAnim: ObjectAnimator =
+//            ObjectAnimator.ofFloat(temperature, View.ALPHA, 0f, 1f)
+
         findWeather().execute()
     }
+
+    private fun fadeInTemp() {
+        val aniFadeIn: Animation =
+            AnimationUtils.loadAnimation(applicationContext, R.anim.anim)
+
+    }
+
 
     inner class findWeather() : AsyncTask<String, Void, String>() {
         override fun onPreExecute() {
