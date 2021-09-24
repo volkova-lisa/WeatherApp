@@ -25,18 +25,18 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
 
-        val temperature = findViewById<TextView>(R.id.temp).text
-//        val fadeInAnim: ObjectAnimator =
-//            ObjectAnimator.ofFloat(temperature, View.ALPHA, 0f, 1f)
+        val temperature = findViewById<TextView>(R.id.temp)
+        temperature.setOnClickListener {
+            val fade: Animation =
+                AnimationUtils.loadAnimation(applicationContext, R.anim.anim)
+
+        }
 
         findWeather().execute()
     }
 
-    private fun fadeInTemp() {
-        val aniFadeIn: Animation =
-            AnimationUtils.loadAnimation(applicationContext, R.anim.anim)
 
-    }
+
 
 
     inner class findWeather() : AsyncTask<String, Void, String>() {
@@ -64,6 +64,8 @@ class MainActivity : AppCompatActivity() {
 
         override fun onPostExecute(result: String?) {
             super.onPostExecute(result)
+
+
             try {
                 /* Extracting JSON returns from the API */
                 val jsonObj = JSONObject(result)
@@ -112,6 +114,12 @@ class MainActivity : AppCompatActivity() {
                 findViewById<ProgressBar>(R.id.loader).visibility = View.GONE
                 findViewById<TextView>(R.id.errorText).visibility = View.VISIBLE
             }
+
+            val temperature = findViewById<TextView>(R.id.temp)
+            val fadeInAnim: ObjectAnimator =
+                ObjectAnimator.ofFloat(temperature, View.ALPHA, 0f, 1f)
+            fadeInAnim.setDuration(4000)
+            fadeInAnim.start()
         }
     }
 }
