@@ -1,20 +1,24 @@
 package quizapp.volkova.weatherapp
 
+import android.R.attr
 import android.animation.ObjectAnimator
 import android.os.AsyncTask
 import android.os.Bundle
+import android.transition.TransitionManager
 import android.util.Log
 import android.view.View
 import android.view.animation.Animation
 import android.view.animation.AnimationUtils
-import android.widget.ProgressBar
-import android.widget.RelativeLayout
-import android.widget.TextView
+import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import org.json.JSONObject
 import java.net.URL
 import java.text.SimpleDateFormat
 import java.util.*
+import android.R.attr.visible
+
+
+
 
 class MainActivity : AppCompatActivity() {
     val CITY: String = "Kyiv"
@@ -23,13 +27,6 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-
-        val temperature = findViewById<TextView>(R.id.temp)
-        temperature.setOnClickListener {
-            val fade: Animation =
-                AnimationUtils.loadAnimation(applicationContext, R.anim.anim)
-        }
-
         findWeather().execute()
     }
 
@@ -107,11 +104,39 @@ class MainActivity : AppCompatActivity() {
                 findViewById<TextView>(R.id.errorText).visibility = View.VISIBLE
             }
 
+
+
             val temperature = findViewById<TextView>(R.id.temp)
             val fadeInAnim: ObjectAnimator =
                 ObjectAnimator.ofFloat(temperature, View.ALPHA, 0f, 1f)
             fadeInAnim.setDuration(4000)
+
+            fun Boolean.toInt() = if (this) 1 else 0
+            var visible : Boolean = true
+            val sq1: LinearLayout = findViewById<LinearLayout>(R.id.sq1)
+            val sq2: LinearLayout = findViewById<LinearLayout>(R.id.sq2)
+            val sq3: LinearLayout = findViewById<LinearLayout>(R.id.sq3)
+            sq3.setOnClickListener{
+                TransitionManager.beginDelayedTransition(sq1)
+                visible = !visible
+                findViewById<Space>(R.id.space_for_anim).setVisibility(if (visible) View.VISIBLE else View.GONE)
+            }
+
+            //TransitionManager.beginDelayedTransition(sq1)
+
+            sq1.setOnClickListener{rotate(sq1)}
+            sq2.setOnClickListener{slide(sq2)}
             fadeInAnim.start()
+        }
+        private fun slide(param: LinearLayout) {
+            val rotAnim : Animation =
+                AnimationUtils.loadAnimation(applicationContext, R.anim.slide_up)
+                param.startAnimation(rotAnim)
+        }
+        private fun rotate(param: LinearLayout) {
+            val rotAnim : Animation =
+                AnimationUtils.loadAnimation(applicationContext, R.anim.rotate)
+            param.startAnimation(rotAnim)
         }
     }
 }

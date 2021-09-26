@@ -91,6 +91,7 @@
             android:layout_width="match_parent"
              android:layout_height="wrap_content">
             <LinearLayout
+                android:id="@+id/sq1"
                 android:orientation="vertical"
                 android:gravity="center"
                 android:padding="8dp"
@@ -121,7 +122,14 @@
             </LinearLayout>
             <Space android:layout_width="10dp"
                android:layout_height="wrap_content"/>
+            <Space
+                android:id="@+id/space_for_anim"
+                android:layout_weight="0.1"
+                android:visibility="gone"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
             <LinearLayout
+                android:id="@+id/sq2"
                 android:orientation="vertical"
                 android:gravity="center"
                 android:padding="8dp"
@@ -150,9 +158,11 @@
                    android:textSize="14sp"/>
 
             </LinearLayout>
+
             <Space android:layout_width="10dp"
                 android:layout_height="wrap_content"/>
             <LinearLayout
+                android:id="@+id/sq3"
                 android:orientation="vertical"
                 android:gravity="center"
                 android:padding="8dp"
@@ -193,6 +203,7 @@
              android:layout_width="match_parent"
              android:layout_height="wrap_content">
             <LinearLayout
+                android:id="@+id/sq4"
                 android:orientation="vertical"
                 android:gravity="center"
                 android:padding="8dp"
@@ -224,6 +235,7 @@
             <Space android:layout_width="10dp"
                 android:layout_height="wrap_content"/>
             <LinearLayout
+                android:id="@+id/sq5"
                 android:orientation="vertical"
                 android:gravity="center"
                 android:padding="8dp"
@@ -255,6 +267,7 @@
             <Space android:layout_width="10dp"
                 android:layout_height="wrap_content"/>
             <LinearLayout
+                android:id="@+id/sq6"
                 android:orientation="vertical"
                 android:gravity="center"
                 android:padding="8dp"
