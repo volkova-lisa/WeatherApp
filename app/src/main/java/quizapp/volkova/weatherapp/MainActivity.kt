@@ -16,8 +16,7 @@ import java.net.URL
 import java.text.SimpleDateFormat
 import java.util.*
 import android.R.attr.visible
-
-
+import android.content.Intent
 
 
 class MainActivity : AppCompatActivity() {
@@ -127,6 +126,11 @@ class MainActivity : AppCompatActivity() {
             sq1.setOnClickListener{rotate(sq1)}
             sq2.setOnClickListener{slide(sq2)}
             fadeInAnim.start()
+
+            findViewById<Button>(R.id.all_cities).setOnClickListener{
+                val intent = Intent(applicationContext, CitiesList::class.java)
+                startActivity(intent)
+            }
         }
         private fun slide(param: LinearLayout) {
             val rotAnim : Animation =
