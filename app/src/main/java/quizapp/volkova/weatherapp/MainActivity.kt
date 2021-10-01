@@ -23,11 +23,13 @@ class MainActivity : AppCompatActivity() {
     val CITY: String = "Kyiv"
     val API: String = "407711ecf9fdb73061869dc807029279"
 
-    val cityList : List<City> = arrayListOf(City("Zhytomyr", "0"),
+    val cityList : List<City> = arrayListOf(City("Kyiv", "0"),City("Zhytomyr", "0"),
         City("Poltava", "0"), City("Kremenchuk", "0"),
         City("Dnipro", "0"),City("Donetsk", "0"),
         City("Mariupol", "0"), City("Nikopol", "0"),
-        City("Odesa", "0"), City("Cherkasy", "0"))
+        City("Odesa", "0"), City("Cherkasy", "0"),
+        City("Lviv", "0"), City("Dnipro", "0"),
+    )
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -38,7 +40,7 @@ class MainActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
-        findWeather(cityList[1].cityName).execute()
+        findWeather(cityList[0].cityName).execute()
     }
 
      inner class findWeather(cityName1 : String) : AsyncTask<String, Void, String>() {
