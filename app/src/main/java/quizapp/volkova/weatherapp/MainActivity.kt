@@ -28,8 +28,7 @@ class MainActivity : AppCompatActivity() {
         City("Dnipro", "0"),City("Donetsk", "0"),
         City("Mariupol", "0"), City("Nikopol", "0"),
         City("Odesa", "0"), City("Cherkasy", "0"),
-        City("Lviv", "0"), City("Dnipro", "0"),
-    )
+        City("Lviv", "0"), City("Dnipro", "0"))
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

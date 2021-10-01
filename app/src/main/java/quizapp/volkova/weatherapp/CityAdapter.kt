@@ -18,6 +18,8 @@ class CityAdapter : RecyclerView.Adapter<CityAdapter.ViewHolder>() {
         City("Mariupol", "0"), City("Nikopol", "0"),
         City("Odesa", "0"), City("Cherkasy", "0"))
 
+        //передать сюда нейм и temp из 2 активити
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CityAdapter.ViewHolder {
         val v = LayoutInflater.from(parent.context).inflate(R.layout.list_item, parent, false)
         return ViewHolder(v)
