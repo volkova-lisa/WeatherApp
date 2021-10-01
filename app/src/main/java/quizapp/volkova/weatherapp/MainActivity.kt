@@ -78,8 +78,8 @@ class MainActivity : AppCompatActivity() {
                         Date(updatedAt * 1000)
                     )
                 val temp = main.getString("temp") + "°C"
-                val tempMin = "Min Temp: " + main.getString("temp_min") + "°C"
-                val tempMax = "Max Temp: " + main.getString("temp_max") + "°C"
+                val tempMin = "Min Temp:\n" + main.getString("temp_min") + "°C"
+                val tempMax = "Max Temp:\n" + main.getString("temp_max") + "°C"
                 val pressure = main.getString("pressure")
                 val humidity = main.getString("humidity")
 
