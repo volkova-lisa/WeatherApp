@@ -15,9 +15,11 @@ import java.net.URL
 import java.text.SimpleDateFormat
 import java.util.*
 import android.content.Intent
+import androidx.recyclerview.widget.RecyclerView
 
 
 class MainActivity : AppCompatActivity() {
+
     val CITY: String = "Kyiv"
     val API: String = "407711ecf9fdb73061869dc807029279"
 
@@ -41,14 +43,12 @@ class MainActivity : AppCompatActivity() {
 
      inner class findWeather(cityName1 : String) : AsyncTask<String, Void, String>() {
         val cityName: String = cityName1
-
         override fun onPreExecute() {
             super.onPreExecute()
             findViewById<ProgressBar>(R.id.loader).visibility = View.VISIBLE
             findViewById<RelativeLayout>(R.id.mainContainer).visibility = View.GONE
             findViewById<TextView>(R.id.errorText).visibility = View.GONE
         }
-
 
         override fun doInBackground(vararg params: String?): String? {
             var response: String?
@@ -58,7 +58,6 @@ class MainActivity : AppCompatActivity() {
                         Charsets.UTF_8
                     )
             } catch (e: Exception) {
-                Log.d("hello", e.toString())
                 response = null
             }
             return response
@@ -66,8 +65,6 @@ class MainActivity : AppCompatActivity() {
 
         override fun onPostExecute(result: String?) {
             super.onPostExecute(result)
-
-
             try {
                 /* Extracting JSON returns from the API */
                 val jsonObj = JSONObject(result)
@@ -75,7 +72,6 @@ class MainActivity : AppCompatActivity() {
                 val sys = jsonObj.getJSONObject("sys")
                 val wind = jsonObj.getJSONObject("wind")
                 val weather = jsonObj.getJSONArray("weather").getJSONObject(0)
-
                 val updatedAt: Long = jsonObj.getLong("dt")
                 val updatedAtText =
                     "Updated at: " + SimpleDateFormat("dd/MM/yyyy hh:mm a", Locale.ENGLISH).format(
@@ -86,12 +82,10 @@ class MainActivity : AppCompatActivity() {
                 val tempMax = "Max Temp:\n" + main.getString("temp_max") + "°C"
                 val pressure = main.getString("pressure")
                 val humidity = main.getString("humidity")
-
                 val sunrise: Long = sys.getLong("sunrise")
                 val sunset: Long = sys.getLong("sunset")
                 val windSpeed = wind.getString("speed")
                 val weatherDescription = weather.getString("description")
-
                 val address = jsonObj.getString("name") + ", " + sys.getString("country")
 
                 findViewById<TextView>(R.id.address).text = address
@@ -115,14 +109,13 @@ class MainActivity : AppCompatActivity() {
                 findViewById<TextView>(R.id.errorText).visibility = View.VISIBLE
             }
 
-
-
             val temperature = findViewById<TextView>(R.id.temp)
             val fadeInAnim: ObjectAnimator =
                 ObjectAnimator.ofFloat(temperature, View.ALPHA, 0f, 1f)
             fadeInAnim.setDuration(4000)
 
             fun Boolean.toInt() = if (this) 1 else 0
+
             var visible : Boolean = true
             val sq1: LinearLayout = findViewById<LinearLayout>(R.id.sq1)
             val sq2: LinearLayout = findViewById<LinearLayout>(R.id.sq2)
@@ -132,14 +125,9 @@ class MainActivity : AppCompatActivity() {
                 visible = !visible
                 findViewById<Space>(R.id.space_for_anim).setVisibility(if (visible) View.VISIBLE else View.GONE)
             }
-
-            //TransitionManager.beginDelayedTransition(sq1)
-
             sq1.setOnClickListener{rotate(sq1)}
             sq2.setOnClickListener{slide(sq2)}
             fadeInAnim.start()
-
-
         }
         private fun slide(param: LinearLayout) {
             val rotAnim : Animation =

@@ -42,29 +42,4 @@ class CityAdapter : RecyclerView.Adapter<CityAdapter.ViewHolder>() {
         }
     }
 
-
-    inner class findWeather(cityName1 : String) : AsyncTask<String, Void, String>() {
-        val cityName12: String = cityName1
-
-        override fun doInBackground(vararg params: String?): String? {
-            var response: String?
-            try {
-                response =
-                    URL("https://api.openweathermap.org/data/2.5/weather?q=$cityName12&units=metric&appid=$API").readText(
-                        Charsets.UTF_8
-                    )
-            } catch (e: Exception) {
-                Log.d("hello", e.toString())
-                response = null
-            }
-            return response
-        }
-
-        override fun onPostExecute(result: String?) {
-            super.onPostExecute(result)
-            //val temp = main.getString("temp") + "°C"
-            //findViewById<TextView>(R.id.temp).text = temp
-
-        }
-    }
 }
