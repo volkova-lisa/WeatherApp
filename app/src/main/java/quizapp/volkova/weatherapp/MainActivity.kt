@@ -32,10 +32,12 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        findWeather().execute()
+        findWeather(cityList[1].cityName).execute()
     }
 
-    inner class findWeather() : AsyncTask<String, Void, String>() {
+    inner class findWeather(cityName1 : String) : AsyncTask<String, Void, String>() {
+        val cityName: String = cityName1
+
         override fun onPreExecute() {
             super.onPreExecute()
             findViewById<ProgressBar>(R.id.loader).visibility = View.VISIBLE
@@ -48,7 +50,7 @@ class MainActivity : AppCompatActivity() {
             var response: String?
             try {
                 response =
-                    URL("https://api.openweathermap.org/data/2.5/weather?q=$CITY&units=metric&appid=$API").readText(
+                    URL("https://api.openweathermap.org/data/2.5/weather?q=$cityName&units=metric&appid=$API").readText(
                         Charsets.UTF_8
                     )
             } catch (e: Exception) {
