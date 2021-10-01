@@ -1,6 +1,5 @@
 package quizapp.volkova.weatherapp
 
-import android.R.attr
 import android.animation.ObjectAnimator
 import android.os.AsyncTask
 import android.os.Bundle
@@ -15,7 +14,6 @@ import org.json.JSONObject
 import java.net.URL
 import java.text.SimpleDateFormat
 import java.util.*
-import android.R.attr.visible
 import android.content.Intent
 
 
@@ -32,10 +30,16 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        findViewById<Button>(R.id.all_cities).setOnClickListener{
+            val intent = Intent(applicationContext, CitiesListActivity::class.java)
+            intent.putExtra("api", API)
+            startActivity(intent)
+        }
+
         findWeather(cityList[1].cityName).execute()
     }
 
-    inner class findWeather(cityName1 : String) : AsyncTask<String, Void, String>() {
+     inner class findWeather(cityName1 : String) : AsyncTask<String, Void, String>() {
         val cityName: String = cityName1
 
         override fun onPreExecute() {
@@ -135,10 +139,7 @@ class MainActivity : AppCompatActivity() {
             sq2.setOnClickListener{slide(sq2)}
             fadeInAnim.start()
 
-            findViewById<Button>(R.id.all_cities).setOnClickListener{
-                val intent = Intent(applicationContext, CitiesList::class.java)
-                startActivity(intent)
-            }
+
         }
         private fun slide(param: LinearLayout) {
             val rotAnim : Animation =

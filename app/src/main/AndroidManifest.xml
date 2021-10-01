@@ -12,7 +12,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.WeatherApp">
         <activity
-            android:name=".CitiesList"
+            android:name=".CitiesListActivity"
             android:exported="true" />
         <activity android:name=".MainActivity">
             <intent-filter>
